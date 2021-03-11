@@ -13,7 +13,7 @@ public class main {
         else {
             Integer r = floorRoot(n);
             int i = 3;
-            while (i < r) {
+            while (i <= r) {
                 if (n % i == 0) { primality = false; break;  }
                 i += 2; }
         }
@@ -22,32 +22,32 @@ public class main {
 
         // Stack Based Algorithm:
     public static boolean isPrimeII(Integer n) {
-        boolean primality = false;
-        if (primesArray.contains(n)) { primality = true; }
-        else {
+        boolean primality = true;
+        if (!primesArray.contains(n)) {
             Integer r = floorRoot(n);
             int l = primesArray.size()-1;
-            if (r <= primesArray.get(l)) { /* This statement checks if there are enough primes in the stack to compute n's primality */
+            if (r <= primesArray.get(l)) { /* This statement checks if there are enough primes in the stack to compute the primality of n */
                 int i = 0;
-                while (i < l) {
-                    int divisor = primesArray.get(l);
+                while (i <= l) {
+                    int divisor = primesArray.get(i);
                     if (n % divisor == 0) { primality = false; break; }
                     i++; }
             }
-            else { System.out.println("Unable to compute primality: Not enough primes in the stack"); }
+            else { System.out.println("Unable to compute primality: No enough primes in the stack"); }
         }
         return primality;
     }
         // <PRIVATE> Update Primes Stack:
-    private static void updateStack(Integer n) {
+    public static void updateStack(Integer n) {
         int l = primesArray.size()-1;
-        Integer p = primesArray.get(l);
+        if (primesArray.isEmpty()) { l = 1; primesArray.add(2); primesArray.add(3); }
+        int p = primesArray.get(l)+2;
         while (p <= n) {
             if (isPrimeII(p)) { primesArray.add(p); }
             p+=2;
         }
     }
-        // The so called Stack of Primes:
+        // The so called Primes Stack:
     private static ArrayList<Integer> primesArray = new ArrayList<>();
 
 
