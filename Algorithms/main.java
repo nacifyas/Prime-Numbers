@@ -1,8 +1,13 @@
 package Algorithms;
 
+import java.util.ArrayList;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 public class main {
 
-    // Check Prime
+    // Primality Test
+
         // Basic Brute Force Algorithm:
     public static boolean isPrimeI(Integer n) { /* O(sqrt(n)) */
         boolean primality = true;
@@ -17,9 +22,35 @@ public class main {
         return primality;
     }
 
-    // Generate Primes
+        // Stack Based Algorithm:
+    public static boolean isPrimeII(Integer n) {
+        boolean primality = false;
 
-    // <PRIVATE> Update Primes Stack
+        if (primesArray.contains(n)) { primality = true; }
+        else {
+            Integer r = floorRoot(n);
+            int l = primesArray.size();
+            if (r <= primesArray.get(l)) {
+                int i = 0;
+                while (i < l) {
+                    int divisor = primesArray.get(l);
+                    if (n % divisor == 0) { primality = false; break; }
+                    i++; }
+            }
+            else {
+                    System.out.println("Unable to compute primality: Not enough primes in the stack");
+                    return false;    }
+        }
+
+        return primality;
+    }
+        // <PRIVATE> Update Primes Stack
+    private static void updateStack(Integer n) {
+
+    }
+
+    private static ArrayList<Integer> primesArray = new ArrayList<>();
+
 
     // <PRIVATE> Auxiliary Methods
     private static Integer floorRoot(Integer n) {
