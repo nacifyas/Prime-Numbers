@@ -1,8 +1,6 @@
 package Algorithms;
 
 import java.util.ArrayList;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class main {
 
@@ -37,9 +35,7 @@ public class main {
                     if (n % divisor == 0) { primality = false; break; }
                     i++; }
             }
-            else {
-                    System.out.println("Unable to compute primality: Not enough primes in the stack");
-                    return false;    }
+            else { System.out.println("Unable to compute primality: Not enough primes in the stack"); }
         }
 
         return primality;
